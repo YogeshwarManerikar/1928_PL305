@@ -134,6 +134,18 @@ $cnt++;
 } ?>
   <tr>
 <th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
+<th> 
+<div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_GDHySC8xb8V2TZ/view" data-text="Pay Now" data-color="#528FF0" data-size="large">
+  <script>
+    (function(){
+      var d=document; var x=!d.getElementById('razorpay-embed-btn-js')
+      if(x){ var s=d.createElement('script'); s.defer=!0;s.id='razorpay-embed-btn-js';
+      s.src='https://cdn.razorpay.com/static/embed_btn/bundle.js';d.body.appendChild(s);} else{var rzp=window['__rzp__'];
+      rzp && rzp.init && rzp.init()}})();
+  </script>
+</div>
+</th>
+
 <th style="text-align:left; font-size:20px;"><?php echo number_format($grandtotal,2);?></th>   
 
 </tr>                                              
