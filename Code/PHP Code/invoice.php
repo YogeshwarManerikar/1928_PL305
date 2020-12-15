@@ -39,7 +39,7 @@ include_once('includes/sidebar.php');
         <!-- /Vertical Nav -->
 
         <!-- Main Content -->
-        <div class="hk-pg-wrapper">
+        <div class="hk-pg-wrapper" >
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
@@ -63,12 +63,36 @@ include_once('includes/sidebar.php');
                     <div class="col-xl-12">
 
 
-  <section class="hk-sec-wrapper hk-invoice-wrap pa-35">
+  <section class="hk-sec-wrapper hk-invoice-wrap pa-35"  id ='DivIdToPrint'>
                             <div class="invoice-from-wrap">
                                 <div class="row">
                                     <div class="col-md-7 mb-20">
 <h3 class="mb-35 font-weight-600">     DFSMS </h3>
 <h6 class="mb-5">Dairy Farm Shop Management System</h6>
+
+
+
+
+<script>
+function printDiv() 
+{
+
+  var divToPrint=document.getElementById('DivIdToPrint');
+
+  var newWin=window.open('','Print-Window');
+
+  newWin.document.open();
+
+  newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+  newWin.document.close();
+
+  setTimeout(function(){newWin.close();},10);
+
+}
+</script>
+
+
 </div>
 
 <?php 
@@ -79,7 +103,7 @@ $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>
-<div class="col-md-5 mb-20">
+<div class="col-md-5 mb-20" >
 <h4 class="mb-35 font-weight-600">Invoice / Receipt</h4>
 <span class="d-block">Date:<span class="pl-10 text-dark"><?php echo $row['InvoiceGenDate'];?></span></span>
 <span class="d-block">Invoice / Receipt #<span class="pl-10 text-dark"><?php echo $row['InvoiceNumber'];?></span></span>
@@ -94,7 +118,7 @@ while($row=mysqli_fetch_array($query))
                         
                           
                        
-<div class="row">
+<div class="row" >
 <div class="col-sm">
 <div class="table-wrap">
 <table class="table mb-0" border="1">
@@ -134,17 +158,7 @@ $cnt++;
 } ?>
   <tr>
 <th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
-<th> 
-<div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_GDHySC8xb8V2TZ/view" data-text="Pay Now" data-color="#528FF0" data-size="large">
-  <script>
-    (function(){
-      var d=document; var x=!d.getElementById('razorpay-embed-btn-js')
-      if(x){ var s=d.createElement('script'); s.defer=!0;s.id='razorpay-embed-btn-js';
-      s.src='https://cdn.razorpay.com/static/embed_btn/bundle.js';d.body.appendChild(s);} else{var rzp=window['__rzp__'];
-      rzp && rzp.init && rzp.init()}})();
-  </script>
-</div>
-</th>
+
 
 <th style="text-align:left; font-size:20px;"><?php echo number_format($grandtotal,2);?></th>   
 
@@ -154,11 +168,30 @@ $cnt++;
                                     </div>
                                 </div>
                             </div>
+							
+							
                         </section>
 
                     </div>
+					
                 </div>
+				<input type='button' id='btn' value='Print' onclick='printDiv();'>
                 <!-- /Row -->
+
+
+ 
+
+<div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_GDHySC8xb8V2TZ/view" data-text="Pay Now" data-color="#528FF0" data-size="large" align="right">
+  <script>
+    (function(){
+      var d=document; var x=!d.getElementById('razorpay-embed-btn-js')
+      if(x){ var s=d.createElement('script'); s.defer=!0;s.id='razorpay-embed-btn-js';
+      s.src='https://cdn.razorpay.com/static/embed_btn/bundle.js';d.body.appendChild(s);} else{var rzp=window['__rzp__'];
+      rzp && rzp.init && rzp.init()}})();
+  </script>
+</div>
+
+
 
             </div>
             <!-- /Container -->
