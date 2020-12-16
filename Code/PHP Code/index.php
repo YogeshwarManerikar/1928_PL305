@@ -3,30 +3,36 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(isset($_POST['login']))
-  {
+    {
+    $adminuser=$_POST['username'];
+    $password=md5($_POST['password']);
+    $query=mysqli_query($con,"select ID from tbladmin where  UserName='admin' && Password='$password' ");
+    $ret=mysqli_fetch_array($query);
+    if($ret>0){
+      $_SESSION['aid']=$ret['ID'];
+     header('location:dashboard.php');
+	}
+	 
+elseif(isset($_POST['login']))	
+	{
     $adminuser=$_POST['username'];
     $password=md5($_POST['password']);
     $query=mysqli_query($con,"select ID from tbladmin where  UserName='$adminuser' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['aid']=$ret['ID'];
-     header('location:dashboard.php');
-    }
-     if else{
-$adminuser=$_POST['username'];
-    $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select ID from tbladmin where  UserName='$adminuser' && Password='$password' ");
-    $ret=mysqli_fetch_array($query);
-    if($ret>0){
-      $_SESSION['aid']=$ret['ID'];
      header('location:dashboard2.php');
-     }
+	}
+
  else{
 
      echo "<script>alert('Invalid details. Please try again.');</script>";   
-   echo "<script>window.location.href='dashboard.php'</script>";
+   echo "<script>window.location.href='dashboard3.php'</script>";
     }
   }
+	}
+  
+  
   ?>
 <!DOCTYPE html>
 <html lang="en">
