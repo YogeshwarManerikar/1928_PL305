@@ -6,12 +6,7 @@ if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
 // Code for deletion   
-if(isset($_GET['del'])){    
-$cmpid=substr(base64_decode($_GET['del']),0,-5);
-$query=mysqli_query($con,"delete from tblcategory where id='$cmpid'");
-echo "<script>alert('Category record deleted.');</script>";   
-echo "<script>window.location.href='manage-categories.php'</script>";
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
